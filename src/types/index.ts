@@ -1,4 +1,4 @@
-import { UserCredential } from 'firebase/auth'
+import { User, UserCredential } from 'firebase/auth'
 
 export interface CollectionItemProps {
   id: string
@@ -35,6 +35,6 @@ export interface SignUpFormFields {
 }
 
 export interface IUserContext {
-  currentUser: UserCredential | null
-  setCurrentUser: (u?: UserCredential | null) => void
+  currentUser: User | null
+  setCurrentUser: (u?: User | null) => void
 }

@@ -25,7 +25,10 @@ const Header: React.FC = () => {
           SHOP
         </Link>
         {currentUser ? (
-          <a onClick={signOutHandler}>SIGN OUT</a>
+          <>
+            <a onClick={signOutHandler}>SIGN OUT &nbsp;</a>
+            <span>{currentUser.displayName || currentUser.email}</span>
+          </>
         ) : (
           <Link className="option" to="/auth">
             SIGN IN

@@ -1,3 +1,4 @@
+import { User } from 'firebase/auth'
 import { createContext, useEffect, useState } from 'react'
 import { IUserContext } from '../types'
 import { signOutUser, userAuthListener } from '../utils/firebase/firebase'
@@ -10,14 +11,14 @@ const defaultContext: IUserContext = {
 export const UserContext = createContext<IUserContext>(defaultContext)
 
 export const UserCtx: React.FC<any> = ({ children }) => {
-  const [user, setUser] = useState<any>(null)
-  const value: IUserContext = { currentUser: user, setCurrentUser: setUser }
+  const [user, setUser] = useState<User | null>(null)
+  const value: IUserContext = {
+    currentUser: user,
+    setCurrentUser: setUser as any,
+  }
 
   useEffect(() => {
     const unsubscribe = userAuthListener((user) => {
-      if (user) {
-        alert(`Welcome, ${user.email}`)
-      }
       setUser(user)
     })
 
