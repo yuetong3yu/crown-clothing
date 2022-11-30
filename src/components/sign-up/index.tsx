@@ -1,11 +1,5 @@
 import { useState } from 'react'
-
-interface SignUpFormFields {
-  displayName: string
-  email: string
-  password: string
-  confirmPassword: string
-}
+import { SignUpFormFields } from '../../types'
 
 const defaultFormFields: SignUpFormFields = {
   displayName: '',
@@ -17,6 +11,7 @@ const defaultFormFields: SignUpFormFields = {
 export const SignUpForm = () => {
   const [formFields, setFormFields] =
     useState<SignUpFormFields>(defaultFormFields)
+
   console.log('123 form fields', formFields)
 
   const onChange = (event: any) => {
