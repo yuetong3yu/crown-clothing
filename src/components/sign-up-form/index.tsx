@@ -9,7 +9,9 @@ import {
 
 import { SignUpFormFields } from '../../types'
 import { EMAIL_REG } from '../../utils/common'
-import FormInput from '../../components/form-input'
+import FormInput from '../form-input'
+
+import './index.scss'
 
 const defaultFormFields: SignUpFormFields = {
   displayName: '',
@@ -70,10 +72,9 @@ export const SignUpForm = () => {
   }, [])
 
   return (
-    <div>
-      <button style={{ marginBottom: 12 }} onClick={signInWithGoogleRedirect}>
-        Sign in with Google
-      </button>
+    <div className="sign-up-container">
+      <h2>Don't have an account?</h2>
+      <span>Sign up with your email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput
           label="Display Name:"
