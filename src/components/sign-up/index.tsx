@@ -9,6 +9,7 @@ import {
 
 import { SignUpFormFields } from '../../types'
 import { EMAIL_REG } from '../../utils/common'
+import FormInput from '../../components/form-input'
 
 const defaultFormFields: SignUpFormFields = {
   displayName: '',
@@ -74,45 +75,41 @@ export const SignUpForm = () => {
         Sign in with Google
       </button>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="displayName">Display Name: </label>
-        <input
+        <FormInput
+          label="Display Name:"
+          handleChange={onChange}
           type="text"
           name="displayName"
           required
           value={formFields.displayName}
-          onChange={onChange}
         />
-        <br />
 
-        <label htmlFor="email">Email: </label>
-        <input
+        <FormInput
           type="email"
           name="email"
           required
+          label="Email:"
           value={formFields.email}
-          onChange={onChange}
+          handleChange={onChange}
         />
-        <br />
 
-        <label htmlFor="password">Password: </label>
-        <input
+        <FormInput
+          label="Password:"
           type="password"
           name="password"
           required
           value={formFields.password}
-          onChange={onChange}
+          handleChange={onChange}
         />
-        <br />
 
-        <label htmlFor="confirmPassword">Confirm Password: </label>
-        <input
+        <FormInput
           type="password"
           name="confirmPassword"
           required
+          label="Confirm Password:"
           value={formFields.confirmPassword}
-          onChange={onChange}
+          handleChange={onChange}
         />
-        <br />
 
         <button type="submit">Submit</button>
       </form>

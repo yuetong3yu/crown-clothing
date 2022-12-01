@@ -6,7 +6,7 @@ export interface CollectionItemProps {
 }
 
 export interface FormInputProps {
-  handleChange: Function
+  handleChange: JSX.IntrinsicElements['input']['onChange']
   label: string
   [key: string]: any
 }
