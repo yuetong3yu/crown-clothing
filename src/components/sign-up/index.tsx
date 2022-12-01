@@ -1,4 +1,8 @@
 import { useState } from 'react'
+import {
+  createUserDocumentFromAuth,
+  signInWithGooglePopup,
+} from '../../utils/firebase/firebase'
 import { SignUpFormFields } from '../../types'
 
 const defaultFormFields: SignUpFormFields = {
@@ -14,6 +18,13 @@ export const SignUpForm = () => {
 
   console.log('123 form fields', formFields)
 
+  const userSignInWithGooglePopup = async () => {
+    const res = await signInWithGooglePopup()
+    if (res) {
+      createUserDocumentFromAuth(res)
+    }
+  }
+
   const onChange = (event: any) => {
     const { name, value } = event.target
 
@@ -22,6 +33,9 @@ export const SignUpForm = () => {
 
   return (
     <div>
+      <button style={{ marginBottom: 12 }} onClick={userSignInWithGooglePopup}>
+        Sign in with Google
+      </button>
       <form>
         <label htmlFor="displayName">Display Name: </label>
         <input
