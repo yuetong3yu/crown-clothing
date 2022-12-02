@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { getRedirectResult, UserCredential } from 'firebase/auth'
+import { useContext, useState } from 'react'
+import { UserCredential } from 'firebase/auth'
 import {
   auth,
   createUserDocumentFromAuth,
@@ -12,6 +12,7 @@ import FormInput from '../form-input'
 import { Button } from '../button'
 
 import './index.scss'
+import { UserContext } from '../../contexts'
 
 const defaultFormFields: SignUpFormFields = {
   displayName: '',
@@ -23,6 +24,7 @@ const defaultFormFields: SignUpFormFields = {
 export const SignUpForm = () => {
   const [formFields, setFormFields] =
     useState<SignUpFormFields>(defaultFormFields)
+  const { setCurrentUser } = useContext(UserContext)
 
   const onChange = (event: any) => {
     const { name, value } = event.target
@@ -47,6 +49,7 @@ export const SignUpForm = () => {
         email,
         password
       )) as UserCredential
+      setCurrentUser(user)
       if (user) {
         const res = await createUserDocumentFromAuth(user, { displayName })
         if (res) {
@@ -57,19 +60,6 @@ export const SignUpForm = () => {
       console.error(err)
     }
   }
-
-  useEffect(() => {
-    listenToRedirect()
-
-    async function listenToRedirect() {
-      if (auth) {
-        const res = await getRedirectResult(auth)
-        if (res) {
-          await createUserDocumentFromAuth(res)
-        }
-      }
-    }
-  }, [])
 
   return (
     <div className="sign-up-container">
