@@ -2,6 +2,7 @@ import { useState } from 'react'
 import {
   signInWithGooglePopup,
   createUserDocumentFromAuth,
+  signInUserWithPasswordAndEmail,
 } from '../../utils/firebase/firebase'
 
 import { SignInFormFields } from '../../types'
@@ -33,6 +34,16 @@ export const SignInForm = () => {
     }
   }
 
+  const signInWithEmail = async (e) => {
+    e.preventDefault()
+
+    const res = await signInUserWithPasswordAndEmail(
+      formFields.email,
+      formFields.password
+    )
+    console.log('123 res', res)
+  }
+
   return (
     <div className="sign-up-container">
       <h2>Already have an account?</h2>
@@ -57,7 +68,7 @@ export const SignInForm = () => {
         />
 
         <div className="buttons-container">
-          <Button type="submit" buttonType="google">
+          <Button type="submit" buttonType="google" onClick={signInWithEmail}>
             Sign In
           </Button>
           <Button onClick={signInWithGoogle} buttonType="inverted">
