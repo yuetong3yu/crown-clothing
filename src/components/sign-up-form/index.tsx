@@ -10,6 +10,7 @@ import {
 import { SignUpFormFields } from '../../types'
 import { EMAIL_REG } from '../../utils/common'
 import FormInput from '../form-input'
+import { Button } from '../button'
 
 import './index.scss'
 
@@ -112,7 +113,9 @@ export const SignUpForm = () => {
           handleChange={onChange}
         />
 
-        <button type="submit">Submit</button>
+        <Button type="submit" buttonType="google">
+          Submit
+        </Button>
       </form>
     </div>
   )
