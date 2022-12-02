@@ -34,7 +34,7 @@ export const SignInForm = () => {
     }
   }
 
-  const signInWithEmail = async (e) => {
+  const signInWithEmail = async (e: any) => {
     e.preventDefault()
 
     const res = await signInUserWithPasswordAndEmail(
@@ -72,7 +72,7 @@ export const SignInForm = () => {
             Sign In
           </Button>
           <Button onClick={signInWithGoogle} buttonType="inverted">
-            Sign In With Google
+            Sign In Google
           </Button>
         </div>
       </form>
