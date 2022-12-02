@@ -1,3 +1,5 @@
+import { UserCredential } from 'firebase/auth'
+
 export interface CollectionItemProps {
   id: string
   name: string
@@ -30,4 +32,9 @@ export interface SignUpFormFields {
   email: string
   password: string
   confirmPassword: string
+}
+
+export interface IUserContext {
+  currentUser: UserCredential | null
+  setCurrentUser: (u?: UserCredential) => void
 }
