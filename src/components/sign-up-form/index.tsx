@@ -1,7 +1,6 @@
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import { UserCredential } from 'firebase/auth'
 import {
-  auth,
   createUserDocumentFromAuth,
   createUserWithPasswordAndEmail,
 } from '../../utils/firebase/firebase'
@@ -24,7 +23,6 @@ const defaultFormFields: SignUpFormFields = {
 export const SignUpForm = () => {
   const [formFields, setFormFields] =
     useState<SignUpFormFields>(defaultFormFields)
-  const { setCurrentUser } = useContext(UserContext)
 
   const onChange = (event: any) => {
     const { name, value } = event.target
@@ -49,7 +47,6 @@ export const SignUpForm = () => {
         email,
         password
       )) as UserCredential
-      setCurrentUser(user)
       if (user) {
         const res = await createUserDocumentFromAuth(user, { displayName })
         if (res) {

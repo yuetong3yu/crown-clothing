@@ -36,5 +36,5 @@ export interface SignUpFormFields {
 
 export interface IUserContext {
   currentUser: UserCredential | null
-  setCurrentUser: (u?: UserCredential) => void
+  setCurrentUser: (u?: UserCredential | null) => void
 }

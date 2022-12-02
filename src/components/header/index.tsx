@@ -5,9 +5,15 @@ import { ReactComponent as Logo } from '../../assets/crown.svg'
 
 import './index.scss'
 import { UserContext } from '../../contexts'
+import { signOutUser } from '../../utils/firebase/firebase'
 
 const Header: React.FC = () => {
   const { currentUser } = useContext(UserContext)
+
+  const signOutHandler = async (e: any) => {
+    e.preventDefault()
+    await signOutUser()
+  }
 
   return (
     <div className="header">
@@ -18,11 +24,13 @@ const Header: React.FC = () => {
         <Link className="option" to="/shop">
           SHOP
         </Link>
-        <Link className="option" to="/auth">
-          {currentUser
-            ? currentUser.user.displayName || currentUser.user.email
-            : 'SIGN IN'}
-        </Link>
+        {currentUser ? (
+          <a onClick={signOutHandler}>SIGN OUT</a>
+        ) : (
+          <Link className="option" to="/auth">
+            SIGN IN
+          </Link>
+        )}
       </div>
     </div>
   )

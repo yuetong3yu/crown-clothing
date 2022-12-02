@@ -7,6 +7,10 @@ import {
   signInWithRedirect,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  User,
+  NextOrObserver,
 } from 'firebase/auth'
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore'
 
@@ -78,3 +82,8 @@ export const signInUserWithPasswordAndEmail = async (
 
   return await signInWithEmailAndPassword(auth, email, password)
 }
+
+export const signOutUser = async () => signOut(auth)
+
+export const userAuthListener = (callback: NextOrObserver<User>) =>
+  onAuthStateChanged(auth, callback)

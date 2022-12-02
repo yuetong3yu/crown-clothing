@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import {
   signInWithGooglePopup,
   createUserDocumentFromAuth,
@@ -20,7 +20,6 @@ const defaultFormFields: SignInFormFields = {
 export const SignInForm = () => {
   const [formFields, setFormFields] =
     useState<SignInFormFields>(defaultFormFields)
-  const { setCurrentUser } = useContext(UserContext)
 
   const onChange = (event: any) => {
     const { name, value } = event.target
@@ -43,7 +42,6 @@ export const SignInForm = () => {
       formFields.email,
       formFields.password
     )
-    setCurrentUser(res)
   }
 
   return (
