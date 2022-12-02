@@ -14,8 +14,8 @@ const Header: React.FC = () => (
       <Link className="option" to="/shop">
         SHOP
       </Link>
-      <Link className="option" to="/shop">
-        CONTACT
+      <Link className="option" to="/auth">
+        SIGN IN
       </Link>
     </div>
   </div>

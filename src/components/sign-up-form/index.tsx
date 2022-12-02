@@ -3,7 +3,6 @@ import { getRedirectResult, UserCredential } from 'firebase/auth'
 import {
   auth,
   createUserDocumentFromAuth,
-  signInWithGoogleRedirect,
   createUserWithPasswordAndEmail,
 } from '../../utils/firebase/firebase'
 

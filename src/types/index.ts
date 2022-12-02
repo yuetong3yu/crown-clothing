@@ -20,6 +20,11 @@ export interface MenuItemProps {
   match: any
 }
 
+export interface SignInFormFields {
+  email: string
+  password: string
+}
+
 export interface SignUpFormFields {
   displayName: string
   email: string

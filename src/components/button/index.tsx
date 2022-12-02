@@ -14,7 +14,7 @@ interface ButtonProps {
 
 export const Button: FunctionComponent<ButtonProps> = ({
   children,
-  buttonType,
+  buttonType = 'inverted',
   ...otherProps
 }) => {
   return (
