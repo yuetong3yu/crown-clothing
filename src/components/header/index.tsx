@@ -6,6 +6,7 @@ import { ReactComponent as Logo } from '../../assets/crown.svg'
 import './index.scss'
 import { UserContext } from '../../contexts'
 import { signOutUser } from '../../utils/firebase/firebase'
+import { CartIcon, CartDropdown } from '../../components'
 
 const Header: React.FC = () => {
   const { currentUser } = useContext(UserContext)
@@ -29,7 +30,9 @@ const Header: React.FC = () => {
             SIGN IN
           </Link>
         )}
+        <CartIcon />
       </div>
+      <CartDropdown />
     </div>
   )
 }
