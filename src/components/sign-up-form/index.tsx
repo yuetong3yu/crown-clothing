@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { UserCredential } from 'firebase/auth'
-import { createUserWithPasswordAndEmail } from '../../utils/firebase/firebase'
+import {
+  createUserDocumentFromAuth,
+  createUserWithPasswordAndEmail,
+} from '../../utils/firebase/firebase'
 
 import { SignUpFormFields } from '../../types'
 import { EMAIL_REG } from '../../utils/common'
@@ -40,8 +43,14 @@ export const SignUpForm = () => {
     if (!EMAIL_REG.test(email)) throw new Error('No valid email.')
 
     try {
-      const res = await createUserWithPasswordAndEmail(email, password)
-      if (res) clearForm()
+      const userAuth = await createUserWithPasswordAndEmail(email, password)
+      const { user } = userAuth!
+      if (user) {
+        const res = await createUserDocumentFromAuth(user, { displayName })
+        if (res) {
+          clearForm()
+        }
+      }
     } catch (err) {
       console.error(err)
     }
