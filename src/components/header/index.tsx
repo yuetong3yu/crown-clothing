@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom'
 import { ReactComponent as Logo } from '../../assets/crown.svg'
 
 import './index.scss'
-import { UserContext } from '../../contexts'
+import { UserContext, CartContext } from '../../contexts'
 import { signOutUser } from '../../utils/firebase/firebase'
 import { CartIcon, CartDropdown } from '../../components'
 
 const Header: React.FC = () => {
   const { currentUser } = useContext(UserContext)
+  const { isCartOpen } = useContext(CartContext)
 
   return (
     <div className="header">
@@ -32,7 +33,7 @@ const Header: React.FC = () => {
         )}
         <CartIcon />
       </div>
-      <CartDropdown />
+      {isCartOpen && <CartDropdown />}
     </div>
   )
 }

@@ -7,19 +7,23 @@ import ShopPage from './pages/shop'
 import Authentication from './pages/authentication'
 import Header from './components/header'
 
-import { UserCtx } from './contexts'
+import { CategoryProvider, UserCtx, CartProvider } from './contexts'
 
 function App() {
   return (
     <UserCtx>
-      <div>
-        <Header />
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/shop" component={ShopPage} />
-          <Route path="/auth" component={Authentication} />
-        </Switch>
-      </div>
+      <CategoryProvider>
+        <CartProvider>
+          <div>
+            <Header />
+            <Switch>
+              <Route exact path="/" component={HomePage} />
+              <Route path="/shop" component={ShopPage} />
+              <Route path="/auth" component={Authentication} />
+            </Switch>
+          </div>
+        </CartProvider>
+      </CategoryProvider>
     </UserCtx>
   )
 }

@@ -1,2 +1,3 @@
 export * from './user.context'
-export * from './category.cotext'
+export * from './category.context'
+export * from './cart.context'
