@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
-
-import SHOP_DATA from './shop.data'
+import { useContext } from 'react'
 import CollectionPreview from '../../components/collection-preview'
 
+import { CategoryContext } from '../../contexts'
+
 const ShopPage = () => {
-  const [collections, setCollections] = useState<any>(SHOP_DATA)
+  const categories = useContext(CategoryContext)
 
   return (
     <div className="shop-page">
-      {collections.map(({ id, ...otherCollectionProps }: any) => (
+      {categories.map(({ id, ...otherCollectionProps }: any) => (
         <CollectionPreview key={id} {...otherCollectionProps} />
       ))}
     </div>

@@ -38,3 +38,17 @@ export interface IUserContext {
   currentUser: User | null
   setCurrentUser: (u?: User | null) => void
 }
+
+export interface IProduct {
+  id: number
+  name: string
+  imageUrl: string
+  price: number
+}
+
+export interface Category {
+  id: number
+  title: string
+  routeName: string
+  items: IProduct[]
+}

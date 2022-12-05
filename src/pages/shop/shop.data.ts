@@ -1,4 +1,6 @@
-const SHOP_DATA = [
+import { Category } from '../../types'
+
+export const SHOP_DATA: Category[] = [
   {
     id: 1,
     title: 'Hats',
@@ -245,5 +247,3 @@ const SHOP_DATA = [
     ],
   },
 ]
-
-export default SHOP_DATA
