@@ -1,7 +1,11 @@
 import { User } from 'firebase/auth'
 import { createContext, useEffect, useState } from 'react'
 import { IUserContext } from '../types'
-import { signOutUser, userAuthListener } from '../utils/firebase/firebase'
+import {
+  createUserDocumentFromAuth,
+  signOutUser,
+  userAuthListener,
+} from '../utils/firebase/firebase'
 
 const defaultContext: IUserContext = {
   currentUser: null,
@@ -18,7 +22,10 @@ export const UserCtx: React.FC<any> = ({ children }) => {
   }
 
   useEffect(() => {
-    const unsubscribe = userAuthListener((user) => {
+    const unsubscribe = userAuthListener(async (user) => {
+      if (user) {
+        await createUserDocumentFromAuth(user)
+      }
       setUser(user)
     })
 

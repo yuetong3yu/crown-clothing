@@ -10,11 +10,6 @@ import { signOutUser } from '../../utils/firebase/firebase'
 const Header: React.FC = () => {
   const { currentUser } = useContext(UserContext)
 
-  const signOutHandler = async (e: any) => {
-    e.preventDefault()
-    await signOutUser()
-  }
-
   return (
     <div className="header">
       <Link className="logo-container" to="/">
@@ -26,7 +21,7 @@ const Header: React.FC = () => {
         </Link>
         {currentUser ? (
           <>
-            <a onClick={signOutHandler}>SIGN OUT &nbsp;</a>
+            <a onClick={signOutUser}>SIGN OUT &nbsp;</a>
             <span>{currentUser.displayName || currentUser.email}</span>
           </>
         ) : (
