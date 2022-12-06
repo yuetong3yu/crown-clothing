@@ -1,6 +1,6 @@
 import { User, UserCredential } from 'firebase/auth'
 
-export interface CollectionItemProps {
+export interface ProductItem {
   id: string
   name: string
   price: number
@@ -51,4 +51,8 @@ export interface Category {
   title: string
   routeName: string
   items: IProduct[]
+}
+
+export interface ICartItem extends ProductItem {
+  quantity: number
 }

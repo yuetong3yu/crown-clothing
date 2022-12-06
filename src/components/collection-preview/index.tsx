@@ -1,5 +1,5 @@
 import React from 'react'
-import { CollectionItemProps } from '../../types'
+import { ProductItem } from '../../types'
 
 import { CollectionItem } from '../index'
 
@@ -7,7 +7,7 @@ import './index.scss'
 
 interface Props {
   title: string
-  items: CollectionItemProps[]
+  items: ProductItem[]
 }
 
 const CollectionPreview: React.FC<Props> = ({ title, items }) => (

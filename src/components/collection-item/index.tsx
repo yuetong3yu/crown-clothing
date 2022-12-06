@@ -1,9 +1,9 @@
 import React from 'react'
 
 import './index.scss'
-import { CollectionItemProps } from '../../types'
+import { ProductItem } from '../../types'
 
-export const CollectionItem: React.FC<CollectionItemProps> = ({
+export const CollectionItem: React.FC<ProductItem> = ({
   id,
   name,
   price,
