@@ -5,7 +5,7 @@ import { CheckoutItem } from '../../components'
 import { CartContext } from '../../contexts'
 
 const Checkout: React.FC = () => {
-  const { cartItems } = useContext(CartContext)
+  const { cartItems, cartTotal } = useContext(CartContext)
 
   return (
     <div className="checkout-page">
@@ -29,7 +29,9 @@ const Checkout: React.FC = () => {
       {cartItems.map((cartItem) => (
         <CheckoutItem key={cartItem.id} item={cartItem} />
       ))}
-      <div className="total">{/* <span>TOTAL: ${total}</span> */}</div>
+      <div className="total">
+        <span>TOTAL: ${cartTotal}</span>
+      </div>
       <div className="test-warning">
         *Please use the following test credit card for payments*
         <br />

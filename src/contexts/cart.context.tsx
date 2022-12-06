@@ -1,10 +1,11 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 import { ICartItem, ProductItem } from '../types'
 
 interface ICartContext {
   isCartOpen: boolean
   setIsCartOpen: Function
   cartItems: ICartItem[]
+  cartTotal: number
   addItemToCart: (p?: ProductItem) => void
   removeItemFromCart: (p?: ProductItem) => void
 }
@@ -15,6 +16,7 @@ export const CartContext = createContext<ICartContext>({
   cartItems: [],
   addItemToCart: () => {},
   removeItemFromCart: () => {},
+  cartTotal: 0,
 })
 
 const addItemCart = (cartItems: ICartItem[], itemToAdd: ProductItem) => {
@@ -57,6 +59,7 @@ const removeItems = (cartItems: ICartItem[], itemToRemove: ProductItem) => {
 export const CartProvider: React.FC<any> = ({ children }) => {
   const [cartOpen, setCartOpen] = useState(false)
   const [cartItems, setCartItems] = useState<ICartItem[]>([])
+  const [cartTotal, setCartTotal] = useState(0)
   const addItemToCart = (newProduct?: ProductItem) => {
     if (newProduct) setCartItems(addItemCart(cartItems, newProduct))
   }
@@ -64,12 +67,19 @@ export const CartProvider: React.FC<any> = ({ children }) => {
     if (product) setCartItems(removeItems(cartItems, product))
   }
 
+  useEffect(() => {
+    setCartTotal(
+      cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)
+    )
+  }, [cartItems])
+
   const value = {
     isCartOpen: cartOpen,
     setIsCartOpen: setCartOpen,
     cartItems,
     addItemToCart,
     removeItemFromCart,
+    cartTotal,
   }
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>
