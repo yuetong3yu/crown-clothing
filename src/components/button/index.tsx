@@ -9,6 +9,7 @@ const BUTTON_TYPE_CLASSES = {
 
 interface ButtonProps {
   buttonType: 'google' | 'inverted'
+  onClick?: JSX.IntrinsicElements['button']['onClick']
   [key: string]: any
 }
 

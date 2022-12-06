@@ -1,7 +1,7 @@
 import { User, UserCredential } from 'firebase/auth'
 
 export interface ProductItem {
-  id: string
+  id: number
   name: string
   price: number
   imageUrl: string
