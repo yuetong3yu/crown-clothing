@@ -4,11 +4,12 @@ import { ICartItem } from '../../types'
 
 import './index.scss'
 
-export const CartItem: React.FC<ICartItem> = ({
-  name,
-  imageUrl,
-  quantity,
-  price,
+interface Props {
+  item: ICartItem
+}
+
+export const CartItem: React.FC<Props> = ({
+  item: { name, imageUrl, quantity, price },
 }) => {
   return (
     <div className="cart-item">

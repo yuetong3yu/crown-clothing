@@ -20,7 +20,7 @@ export const Button: FunctionComponent<ButtonProps> = ({
 }) => {
   return (
     <button
-      className={`button-container ${BUTTON_TYPE_CLASSES[buttonType]}`}
+      className={`custom-button button-container ${BUTTON_TYPE_CLASSES[buttonType]}`}
       {...otherProps}
     >
       {children}
