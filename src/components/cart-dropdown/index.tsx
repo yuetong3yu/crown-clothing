@@ -1,11 +1,18 @@
 import { useContext } from 'react'
+import { useHistory } from 'react-router-dom'
 import { CartContext } from '../../contexts'
 import { Button, CartItem } from '../index'
 
 import './index.scss'
 
 export const CartDropdown = () => {
-  const { cartItems } = useContext(CartContext)
+  const { cartItems, setIsCartOpen } = useContext(CartContext)
+  const history = useHistory()
+
+  const handleCheckout = () => {
+    history.push('/checkout')
+    setIsCartOpen(false)
+  }
 
   return (
     <div className="cart-dropdown">
@@ -18,7 +25,9 @@ export const CartDropdown = () => {
           <span className="empty-message">Your cart is empty</span>
         )}
       </div>
-      <Button buttonType="inverted">GO TO CHECKOUT</Button>
+      <Button buttonType="inverted" onClick={handleCheckout}>
+        GO TO CHECKOUT
+      </Button>
     </div>
   )
 }
